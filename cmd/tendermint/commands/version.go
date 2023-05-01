@@ -6,7 +6,12 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/tendermint/tendermint/version"
+	"github.com/YunweiMao/tendermint/version"
+)
+
+//this should be in the cmd/tendermint/commands/light.go file but we put it here for compiling purpose.
+var (
+	verbose bool
 )
 
 // VersionCmd ...

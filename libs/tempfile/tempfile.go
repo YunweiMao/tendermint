@@ -9,7 +9,8 @@ import (
 	"strings"
 	"time"
 
-	tmsync "github.com/tendermint/tendermint/libs/sync"
+	//sync.go only depends on the third-party packages.
+	tmsync "github.com/YunweiMao/tendermint/libs/sync"
 )
 
 const (

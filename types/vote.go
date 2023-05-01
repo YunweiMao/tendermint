@@ -6,10 +6,23 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/tendermint/tendermint/crypto"
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
-	"github.com/tendermint/tendermint/libs/protoio"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+	//all files in protoio/ are directly from gogo/proto project (third-party package)
+	"github.com/YunweiMao/tendermint/libs/protoio"
+
+	//bytes.go only depends on third-party packages
+	tmbytes "github.com/YunweiMao/tendermint/libs/bytes"
+
+	//crypto only depends on tmhash.go and bytes.go
+	////both tmhash and bytes does not depend on any tendermint funcs
+	"github.com/YunweiMao/tendermint/crypto"
+
+    //we only use SignedMsgType, Vote, PrevoteType, PrecommitType
+    //SignedMsgType is defined in types/types.proto (thus types/types.pb.go)
+	//Vote is defined in types/types.proto
+    //PrevoteType is defined in types/types.proto (an alias of SIGNED_MSG_TYPE_PREVOTE)
+    //PrecommitType is defined in types/types.proto (an alias of SIGNED_MSG_TYPE_PRECOMMIT)
+    //so the only file we need in types/ folder is types.proto (thus types/types.pb.go)
+	tmproto "github.com/YunweiMao/tendermint/proto/tendermint/types"
 )
 
 const (
@@ -41,6 +54,12 @@ func NewConflictingVoteError(vote1, vote2 *Vote) *ErrVoteConflictingVotes {
 		VoteB: vote2,
 	}
 }
+
+//the definition of crypto.Address is as follows:
+// An address is a []byte, but hex-encoded even in JSON.
+// []byte leaves us the option to change the address length.
+// Use an alias so Unmarshal methods (with ptr receivers) are available too.
+//type Address = bytes.HexBytes
 
 // Address is hex bytes.
 type Address = crypto.Address

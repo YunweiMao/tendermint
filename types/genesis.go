@@ -8,12 +8,15 @@ import (
 	"os"
 	"time"
 
-	"github.com/tendermint/tendermint/crypto"
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
-	tmjson "github.com/tendermint/tendermint/libs/json"
-	tmos "github.com/tendermint/tendermint/libs/os"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmtime "github.com/tendermint/tendermint/types/time"
+	"github.com/YunweiMao/tendermint/crypto"
+	tmbytes "github.com/YunweiMao/tendermint/libs/bytes"
+	tmjson "github.com/YunweiMao/tendermint/libs/json"
+	tmos "github.com/YunweiMao/tendermint/libs/os"
+	tmtime "github.com/YunweiMao/tendermint/types/time"
+
+	//only needs ConsensusParams, and it is defined in types/params.proto (thus params.pb.go)
+	tmproto "github.com/YunweiMao/tendermint/proto/tendermint/types"
+	
 )
 
 const (

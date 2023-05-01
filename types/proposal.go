@@ -5,10 +5,21 @@ import (
 	"fmt"
 	"time"
 
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
-	"github.com/tendermint/tendermint/libs/protoio"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	tmtime "github.com/tendermint/tendermint/types/time"
+	//all files in protoio/ are directly from gogo/proto project (third-party package)
+	"github.com/YunweiMao/tendermint/libs/protoio"
+
+	//bytes.go only depends on third-party packages
+	tmbytes "github.com/YunweiMao/tendermint/libs/bytes"
+
+	//time.go only depends on the third-party dependencies
+	tmtime "github.com/YunweiMao/tendermint/types/time"
+
+	//we only use Proposal, ProposalType, SignedMsgType
+	//SignedMsgType is defined in types/types.proto (thus types/types.pb.go)
+	//ProposalType is defined in types/types.proto (an alias of SIGNED_MSG_TYPE_PROPOSAL)
+	//Proposal is defined in types/types.proto
+	//so the only file we need in types/ folder is types.proto (thus types/types.pb.go)
+	tmproto "github.com/YunweiMao/tendermint/proto/tendermint/types"
 )
 
 var (

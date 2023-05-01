@@ -5,7 +5,8 @@ import (
 	mrand "math/rand"
 	"time"
 
-	tmsync "github.com/tendermint/tendermint/libs/sync"
+	//sync.go only depends on third-party dependencies.
+	tmsync "github.com/YunweiMao/tendermint/libs/sync"
 )
 
 const (

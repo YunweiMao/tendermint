@@ -8,13 +8,18 @@ import (
 
 	"golang.org/x/crypto/ed25519"
 
-	"github.com/tendermint/tendermint/crypto"
-	"github.com/tendermint/tendermint/crypto/tmhash"
-	tmjson "github.com/tendermint/tendermint/libs/json"
+	//crypto and tmhash all depend on third-party packages
+	"github.com/YunweiMao/tendermint/crypto"
+	"github.com/YunweiMao/tendermint/crypto/tmhash"
+
+	//json depends only on libs/sync/sync.go, and sync only depends on third-party packages
+	tmjson "github.com/YunweiMao/tendermint/libs/json"
 )
 
 //-------------------------------------
 
+//var _ crypto.PrivKey = PrivKey{} 
+// is a way of checking that PrivKey satisfies the crypto.PrivKey interface, while discarding the result.
 var _ crypto.PrivKey = PrivKey{}
 
 const (

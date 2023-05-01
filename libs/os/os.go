@@ -8,12 +8,32 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/tendermint/tendermint/libs/log"
+	//"github.com/YunweiMao/tendermint/libs/log"
 )
+
+//we do not like to include files here and there.
+//these two variable/func are definied originally in libs/log/lazy.go
+//we copy here and delete the dependency on libs/log
+type LazySprintf struct {
+	format string
+	args   []interface{}
+}
+
+// NewLazySprintf defers fmt.Sprintf until the Stringer interface is invoked.
+// This is particularly useful for avoiding calling Sprintf when debugging is not
+// active.
+func NewLazySprintf(format string, args ...interface{}) *LazySprintf {
+	return &LazySprintf{format, args}
+}
+
+
+//original filestart here
 
 type logger interface {
 	Info(msg string, keyvals ...interface{})
 }
+
+
 
 // TrapSignal catches the SIGTERM/SIGINT and executes cb function. After that it exits
 // with code 0.
@@ -22,7 +42,7 @@ func TrapSignal(logger logger, cb func()) {
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 	go func() {
 		for sig := range c {
-			logger.Info("signal trapped", "msg", log.NewLazySprintf("captured %v, exiting...", sig))
+			logger.Info("signal trapped", "msg", NewLazySprintf("captured %v, exiting...", sig))
 			if cb != nil {
 				cb()
 			}

@@ -8,7 +8,8 @@ import (
 	"strings"
 	"text/template"
 
-	tmos "github.com/tendermint/tendermint/libs/os"
+	//os.go only depends on the third-party packages
+	tmos "github.com/YunweiMao/tendermint/libs/os"
 )
 
 // DefaultDirPerm is the default permissions used when creating directories.

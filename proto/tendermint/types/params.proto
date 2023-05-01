@@ -1,7 +1,19 @@
 syntax = "proto3";
 package tendermint.types;
 
-option go_package = "github.com/tendermint/tendermint/proto/tendermint/types";
+option go_package = "github.com/YunweiMao/tendermint/proto/tendermint/types";
+
+//We need several .proto files
+//According to the following analysis we need:
+//  gogoproto/gogo.proto
+//  google/protobuf/duration.proto
+//The paths are
+// $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/
+// $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/protobuf/
+// . (we compile the .proto file at tendermint project proto/ subfolder)
+// The final command we use to compile .pb.go file is
+// protoc --proto_path=./:$GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/ --go_out=./tendermint/types/ ./tendermint/types/params.proto
+// (SEEMS we do not need inlcude $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/protobuf/ path)
 
 import "gogoproto/gogo.proto";
 import "google/protobuf/duration.proto";

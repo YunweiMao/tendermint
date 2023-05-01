@@ -9,16 +9,42 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 
-	"github.com/tendermint/tendermint/crypto"
-	"github.com/tendermint/tendermint/crypto/ed25519"
-	tmbytes "github.com/tendermint/tendermint/libs/bytes"
-	tmjson "github.com/tendermint/tendermint/libs/json"
-	tmos "github.com/tendermint/tendermint/libs/os"
-	"github.com/tendermint/tendermint/libs/protoio"
-	"github.com/tendermint/tendermint/libs/tempfile"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-	"github.com/tendermint/tendermint/types"
-	tmtime "github.com/tendermint/tendermint/types/time"
+	//all files in libs/protoio are directly copied from gogo/proto
+	"github.com/YunweiMao/tendermint/libs/protoio"
+
+	//clearup for version command.
+	//os.go only depends on third-party dependencies.
+	tmos "github.com/YunweiMao/tendermint/libs/os"
+
+	//bytes.go only depends on third-party dependencies
+	tmbytes "github.com/YunweiMao/tendermint/libs/bytes"
+
+	//crypto.go only depend on crypto/tmhash and libs/bytes.
+	//both tmhash.go and bates.go only depend on third-party dependencies.
+	"github.com/YunweiMao/tendermint/crypto"
+
+	//json/types.go depends only on libs/sync/sync.go
+	//sync.go only depends on third-party dependencies.
+	tmjson "github.com/YunweiMao/tendermint/libs/json"
+
+	//tempfile only depends on libs/sync/sync.go
+	"github.com/YunweiMao/tendermint/libs/tempfile"
+
+	//ed25519.go depends on libs/json/types.go and other third-party dependencies
+	"github.com/YunweiMao/tendermint/crypto/ed25519"
+
+	//time.go only depends on the third-party dependencies
+	tmtime "github.com/YunweiMao/tendermint/types/time"
+
+	//here we only use types.Address, types.VoteSignBytes, 
+	//  and types.ProposalSignBytes variables/funcs
+	// types.Address and types.VoteSignBytes are defined in types/vote.go
+	//ProposalSignBytes is defined in types/proposal.go
+	"github.com/YunweiMao/tendermint/types"
+
+	//SignedMsgType, Vote, PrevoteType, PrecommitType, Proposal, ProposalType, SignedMsgType are all defined in types/types.proto
+	//CanonicalVote, CanonicalProposal are defined in types/canonical.proto
+	tmproto "github.com/YunweiMao/tendermint/proto/tendermint/types"
 )
 
 // TODO: type ?
@@ -45,6 +71,8 @@ func voteToStep(vote *tmproto.Vote) int8 {
 
 // FilePVKey stores the immutable part of PrivValidator.
 type FilePVKey struct {
+	//Address is defined in types/vote.go
+	//Address = crypto.Address
 	Address types.Address  `json:"address"`
 	PubKey  crypto.PubKey  `json:"pub_key"`
 	PrivKey crypto.PrivKey `json:"priv_key"`
@@ -238,6 +266,8 @@ func LoadOrGenFilePV(keyFilePath, stateFilePath string) *FilePV {
 
 // GetAddress returns the address of the validator.
 // Implements PrivValidator.
+//types.Address is defined in types/vote.go
+//types.Address = crypto.Address
 func (pv *FilePV) GetAddress() types.Address {
 	return pv.Key.Address
 }
@@ -309,7 +339,8 @@ func (pv *FilePV) signVote(chainID string, vote *tmproto.Vote) error {
 	if err != nil {
 		return err
 	}
-
+	
+	//VoteSignBytes is definied in types/vote.go
 	signBytes := types.VoteSignBytes(chainID, vote)
 
 	// We might crash before writing to the wal,
@@ -352,6 +383,7 @@ func (pv *FilePV) signProposal(chainID string, proposal *tmproto.Proposal) error
 		return err
 	}
 
+	//ProposalSignBytes is defined in types/proposal.go
 	signBytes := types.ProposalSignBytes(chainID, proposal)
 
 	// We might crash before writing to the wal,

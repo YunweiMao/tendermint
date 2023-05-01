@@ -6,10 +6,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/tendermint/tendermint/crypto"
-	"github.com/tendermint/tendermint/crypto/ed25519"
-	tmjson "github.com/tendermint/tendermint/libs/json"
-	tmos "github.com/tendermint/tendermint/libs/os"
+	//all files are clearup when we deal with privval/file.go
+	"github.com/YunweiMao/tendermint/crypto"
+	"github.com/YunweiMao/tendermint/crypto/ed25519"
+	tmjson "github.com/YunweiMao/tendermint/libs/json"
+	tmos "github.com/YunweiMao/tendermint/libs/os"
 )
 
 // ID is a hex-encoded crypto.Address
