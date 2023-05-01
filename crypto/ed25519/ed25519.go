@@ -8,12 +8,20 @@ import (
 
 	"golang.org/x/crypto/ed25519"
 
-	//crypto and tmhash all depend on third-party packages
-	"github.com/YunweiMao/tendermint/crypto"
+	//we only need tmhash.SumTruncated func
+	// and it is defined in tmhash/hash.go
 	"github.com/YunweiMao/tendermint/crypto/tmhash"
 
+	//tmjson.RegisterType is defined in tmjson/types.go
 	//json depends only on libs/sync/sync.go, and sync only depends on third-party packages
 	tmjson "github.com/YunweiMao/tendermint/libs/json"
+
+	//we need to define crypto.PubKey, crypto.PrivKey, crypto.Address
+	// crypto.Sha256(), crypto.CReader()
+	// crypto.PubKey, crypto.PrivKey, crypto.Address are defined in crypto/crypto.go
+	// crypto.Sha256() is defined in crypto/hash.go
+	// crypto.CReader() is defined in crypto/random.go
+	"github.com/YunweiMao/tendermint/crypto"
 )
 
 //-------------------------------------

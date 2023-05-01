@@ -3,6 +3,15 @@ package tendermint.types;
 
 option go_package = "github.com/YunweiMao/tendermint/proto/tendermint/types";
 
+//We need several .proto files
+//According to the following analysis we need:
+//  gogoproto/gogo.proto
+//The paths are
+// $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/
+// . (we compile the .proto file at tendermint project proto/ subfolder)
+// The final command we use to compile .pb.go file is
+// protoc --proto_path=./:$GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/ --go_out=./tendermint/types/ ./tendermint/types/validator.proto
+// (SEEMS we do not need inlcude $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/protobuf/ path)
 import "gogoproto/gogo.proto";
 import "tendermint/crypto/keys.proto";
 

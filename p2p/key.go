@@ -6,11 +6,18 @@ import (
 	"fmt"
 	"os"
 
-	//all files are clearup when we deal with privval/file.go
-	"github.com/YunweiMao/tendermint/crypto"
-	"github.com/YunweiMao/tendermint/crypto/ed25519"
-	tmjson "github.com/YunweiMao/tendermint/libs/json"
+	//FileExits is defined in os.go
 	tmos "github.com/YunweiMao/tendermint/libs/os"
+
+	//Unmarshal and Marshal are defined in libs/json/decoder.go and libs/json/encoder.go, separately
+	tmjson "github.com/YunweiMao/tendermint/libs/json"
+
+	//GenPrivKey is defined in ed25519.go
+	"github.com/YunweiMao/tendermint/crypto/ed25519"
+
+	//all files are clearup when we deal with privval/file.go
+	//AddressSize, crypto.PrivKey, crypto.PubKey
+	"github.com/YunweiMao/tendermint/crypto"
 )
 
 // ID is a hex-encoded crypto.Address

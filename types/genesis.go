@@ -60,11 +60,18 @@ func (genDoc *GenesisDoc) SaveAs(file string) error {
 
 // ValidatorHash returns the hash of the validator set contained in the GenesisDoc
 func (genDoc *GenesisDoc) ValidatorHash() []byte {
+	
+	//Validator is defined in the local validator.go
 	vals := make([]*Validator, len(genDoc.Validators))
+
 	for i, v := range genDoc.Validators {
+		//NewValidator is defined in the local validator.go
 		vals[i] = NewValidator(v.PubKey, v.Power)
 	}
+
+	//NewValidatorSet is defined in the local validator_set.go
 	vset := NewValidatorSet(vals)
+	
 	return vset.Hash()
 }
 
