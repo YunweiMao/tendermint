@@ -5,6 +5,7 @@ go 1.18
 require github.com/spf13/cobra v1.6.0
 
 require (
+	github.com/btcsuite/btcd v0.22.1
 	github.com/go-kit/log v0.2.1
 	github.com/go-logfmt/logfmt v0.5.1
 	github.com/gogo/protobuf v1.3.2
