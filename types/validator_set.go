@@ -666,6 +666,7 @@ func (vals *ValidatorSet) UpdateWithChangeSet(changes []*Validator) error {
 // application that depends on the LastCommitInfo sent in BeginBlock, which
 // includes which validators signed. For instance, Gaia incentivizes proposers
 // with a bonus for including more than +2/3 of the signatures.
+//BlockID/Commit are both defined in local block.go
 func (vals *ValidatorSet) VerifyCommit(chainID string, blockID BlockID,
 	height int64, commit *Commit) error {
 

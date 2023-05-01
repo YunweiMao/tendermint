@@ -1,0 +1,28 @@
+syntax = "proto3";
+package tendermint.types;
+
+option go_package = "github.com/YunweiMao/tendermint/proto/tendermint/types";
+
+//We need several .proto files
+//According to the following analysis we need:
+//  gogoproto/gogo.proto
+//  tendermint/types/types.proto
+//  tendermint/types/evidence.proto
+//The paths are
+// $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/
+// $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/protobuf/
+// . (we compile the .proto file at tendermint project proto/ subfolder)
+// The final command we use to compile .pb.go file is
+// protoc --proto_path=./:$GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/ --go_out=./tendermint/types/ ./tendermint/types/block.proto
+// (SEEMS we do not need inlcude $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/protobuf/ path)
+
+import "gogoproto/gogo.proto";
+import "tendermint/types/types.proto";
+import "tendermint/types/evidence.proto";
+
+message Block {
+  Header                        header      = 1 [(gogoproto.nullable) = false];
+  Data                          data        = 2 [(gogoproto.nullable) = false];
+  tendermint.types.EvidenceList evidence    = 3 [(gogoproto.nullable) = false];
+  Commit                        last_commit = 4;
+}
