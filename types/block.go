@@ -475,6 +475,7 @@ func (h *Header) Hash() tmbytes.HexBytes {
 	}
 	return merkle.HashFromByteSlices([][]byte{
 		hbz,
+		//cdcEncode() is defined in local encoding_helper.go
 		cdcEncode(h.ChainID),
 		cdcEncode(h.Height),
 		pbt,
