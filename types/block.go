@@ -152,6 +152,7 @@ func (b *Block) Hash() tmbytes.HexBytes {
 // MakePartSet returns a PartSet containing parts of a serialized block.
 // This is the form in which the block is gossipped to peers.
 // CONTRACT: partSize is greater than zero.
+// PartSet is defined in part_set.go
 func (b *Block) MakePartSet(partSize uint32) *PartSet {
 	if b == nil {
 		return nil
@@ -779,6 +780,7 @@ func NewCommit(height int64, round int32, blockID BlockID, commitSigs []CommitSi
 // CommitToVoteSet constructs a VoteSet from the Commit and validator set.
 // Panics if signatures from the commit can't be added to the voteset.
 // Inverse of VoteSet.MakeCommit().
+//VoteSet is defined in the local vote_set.go
 func CommitToVoteSet(chainID string, commit *Commit, vals *ValidatorSet) *VoteSet {
 	voteSet := NewVoteSet(chainID, commit.Height, commit.Round, tmproto.PrecommitType, vals)
 	for idx, commitSig := range commit.Signatures {
@@ -1004,6 +1006,7 @@ func CommitFromProto(cp *tmproto.Commit) (*Commit, error) {
 //-----------------------------------------------------------------------------
 
 // Data contains the set of transactions included in the block
+//Txs is defined in the local tx.go
 type Data struct {
 
 	// Txs that will be applied by state @ block.Height+1.
