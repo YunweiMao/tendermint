@@ -409,6 +409,7 @@ func (h Header) ValidateBasic() error {
 		return fmt.Errorf("wrong LastBlockID: %w", err)
 	}
 
+	//ValidateHash is defined in the local validation.go
 	if err := ValidateHash(h.LastCommitHash); err != nil {
 		return fmt.Errorf("wrong LastCommitHash: %v", err)
 	}
@@ -1089,6 +1090,8 @@ func DataFromProto(dp *tmproto.Data) (Data, error) {
 
 // EvidenceData contains any evidence of malicious wrong-doing by validators
 type EvidenceData struct {
+	//EvidenceList is defined in local evidence.go
+	//This is different with tmproto.EvidenceList
 	Evidence EvidenceList `json:"evidence"`
 
 	// Volatile. Used as cache
