@@ -8,7 +8,7 @@ import (
 	"github.com/YunweiMao/tendermint/crypto/tmhash"
 
 	//tmcrypto.Proof is defined in proto/tendermint/crypto/proof.proto
-	tmcrypto "github.com/tendermint/tendermint/proto/tendermint/crypto"
+	tmcrypto "github.com/YunweiMao/tendermint/proto/tendermint/crypto"
 )
 
 const (
