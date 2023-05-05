@@ -671,11 +671,13 @@ func (vals *ValidatorSet) VerifyCommit(chainID string, blockID BlockID,
 	height int64, commit *Commit) error {
 
 	if vals.Size() != len(commit.Signatures) {
+		//NewErrInvalidCommitSignatures is defined in local errors.go
 		return NewErrInvalidCommitSignatures(vals.Size(), len(commit.Signatures))
 	}
 
 	// Validate Height and BlockID.
 	if height != commit.Height {
+		//NewErrInvalidCommitHeight is defined in local errors.go
 		return NewErrInvalidCommitHeight(height, commit.Height)
 	}
 	if !blockID.Equals(commit.BlockID) {
