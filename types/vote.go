@@ -176,6 +176,7 @@ func (vote *Vote) Verify(chainID string, pubKey crypto.PubKey) error {
 
 // ValidateBasic performs basic validation.
 func (vote *Vote) ValidateBasic() error {
+	//IsVoteTypeValid is defined in local signed_msg_type.go
 	if !IsVoteTypeValid(vote.Type) {
 		return errors.New("invalid Type")
 	}
