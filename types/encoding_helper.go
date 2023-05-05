@@ -9,6 +9,7 @@ import (
 // cdcEncode returns nil if the input is nil, otherwise returns
 // proto.Marshal(<type>Value{Value: item})
 func cdcEncode(item interface{}) []byte {
+	//isTypedNil and isEmpty are defined in utils.go
 	if item != nil && !isTypedNil(item) && !isEmpty(item) {
 		switch item := item.(type) {
 		case string:

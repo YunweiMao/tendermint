@@ -220,6 +220,7 @@ func (l *LightClientAttackEvidence) ABCI() []abci.Evidence {
 	for idx, val := range l.ByzantineValidators {
 		abciEv[idx] = abci.Evidence{
 			Type:             abci.EvidenceType_LIGHT_CLIENT_ATTACK,
+			//TM2PB is defined in local protobuf.go
 			Validator:        TM2PB.Validator(val),
 			Height:           l.Height(),
 			Time:             l.Timestamp,

@@ -662,6 +662,7 @@ func (cs CommitSig) String() string {
 		tmbytes.Fingerprint(cs.Signature),
 		tmbytes.Fingerprint(cs.ValidatorAddress),
 		cs.BlockIDFlag,
+		//CanonicalTime is defined in local canonical.go
 		CanonicalTime(cs.Timestamp))
 }
 
@@ -714,6 +715,7 @@ func (cs CommitSig) ValidateBasic() error {
 		if len(cs.Signature) == 0 {
 			return errors.New("signature is missing")
 		}
+		//MaxSignatureSize is defined in local signable.go
 		if len(cs.Signature) > MaxSignatureSize {
 			return fmt.Errorf("signature is too big (max: %d)", MaxSignatureSize)
 		}

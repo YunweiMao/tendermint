@@ -92,7 +92,9 @@ func (genDoc *GenesisDoc) ValidateAndComplete() error {
 	}
 
 	if genDoc.ConsensusParams == nil {
+		//DefaultConsensusParams is defined in local params.go
 		genDoc.ConsensusParams = DefaultConsensusParams()
+		//ValidateConsensusParams is defined in local params.go
 	} else if err := ValidateConsensusParams(*genDoc.ConsensusParams); err != nil {
 		return err
 	}

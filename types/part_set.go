@@ -37,6 +37,7 @@ type Part struct {
 
 // ValidateBasic performs basic validation.
 func (part *Part) ValidateBasic() error {
+	//BlockPartSizeBytes is defined in local params.go
 	if len(part.Bytes) > int(BlockPartSizeBytes) {
 		return fmt.Errorf("too big: %d bytes, max: %d", len(part.Bytes), BlockPartSizeBytes)
 	}
