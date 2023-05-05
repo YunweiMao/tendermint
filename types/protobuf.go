@@ -1,7 +1,7 @@
 package types
 
 import (
-	abci "github.com/YunweiMao/tendermint/proto/tendermint/abci/types"
+	abci "github.com/YunweiMao/tendermint/proto/tendermint/abci"
 
 	"github.com/YunweiMao/tendermint/crypto"
 	"github.com/YunweiMao/tendermint/crypto/ed25519"
