@@ -7,7 +7,7 @@ import (
 
 	tmproto "github.com/YunweiMao/tendermint/proto/tendermint/types"
 	"github.com/YunweiMao/tendermint/crypto/tmhash"
-	abci "github.com/YunweiMao/tendermint/proto/tendermint/abci"
+	abci "github.com/YunweiMao/abci/types"
 	
 	
 )

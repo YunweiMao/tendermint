@@ -10,6 +10,16 @@ import (
 	"time"
 )
 
+//In Go, iota is a predeclared identifier that represents successive integer constants in a sequence. 
+//  It is often used in const declarations to simplify the definition of related constants.
+//  When iota is used in a const declaration, its value starts at 0 and increments by 1 for each subsequent constant. 
+// Here's an example:
+//	const (
+//		FuzzModeOff  = iota // 0
+//		FuzzModeRand        // 1
+//		FuzzModeRepeat      // 2
+//		FuzzModeDrop        // 3
+//		)
 const (
 	// FuzzModeDrop is a mode in which we randomly drop reads/writes, connections or sleep
 	FuzzModeDrop = iota
