@@ -28,7 +28,7 @@ import (
 	//abci.Validator
 	//abci.EvidenceType_LIGHT_CLIENT_ATTACK
 	//we change it to this place in order to keep everything smooth
-	abci "github.com/YunweiMao/abci/types"
+	abci "github.com/YunweiMao/tendermint/abci/types"
 )
 
 // Evidence represents any provable malicious activity by a validator.
