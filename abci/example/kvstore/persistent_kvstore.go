@@ -12,7 +12,7 @@ import (
 	"github.com/YunweiMao/tendermint/abci/example/code"
 	"github.com/YunweiMao/tendermint/abci/types"
 	cryptoenc "github.com/YunweiMao/tendermint/crypto/encoding"
-	"github.com/tendermint/YunweiMao/libs/log"
+	"github.com/YunweiMao/tendermint/libs/log"
 	pc "github.com/YunweiMao/tendermint/proto/tendermint/crypto"
 )
 
