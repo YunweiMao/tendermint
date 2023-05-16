@@ -85,6 +85,7 @@ func (op ValueOp) Run(args [][]byte) ([][]byte, error) {
 
 	bz := new(bytes.Buffer)
 	// Wrap <op.Key, vhash> to hash the KVPair.
+	//encodeByteSlice is defined in ./crypto/merkle/types.go
 	encodeByteSlice(bz, op.key) //nolint: errcheck // does not error
 	encodeByteSlice(bz, vhash)  //nolint: errcheck // does not error
 	kvhash := leafHash(bz.Bytes())
