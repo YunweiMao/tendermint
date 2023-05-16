@@ -9,7 +9,7 @@ import (
 	//cleared in v0
 	bc "github.com/YunweiMao/tendermint/blockchain"
 	"github.com/YunweiMao/tendermint/libs/log"
-	"github.com/Yunwei/tendermint/p2p"
+	"github.com/YunweiMao/tendermint/p2p"
 	"github.com/YunweiMao/tendermint/types"
 	"github.com/YunweiMao/tendermint/store"
 	sm "github.com/YunweiMao/tendermint/state"
