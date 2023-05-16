@@ -226,6 +226,7 @@ func (c *Client) Call(
 		return nil, fmt.Errorf("failed to read response body: %w", err)
 	}
 
+	//unmarshalResponseBytes is defined in ./rpc/jsonrpc/client/decode.go
 	return unmarshalResponseBytes(responseBytes, id, result)
 }
 
@@ -280,6 +281,7 @@ func (c *Client) sendBatch(ctx context.Context, requests []*jsonRPCBufferedReque
 		ids[i] = req.request.ID.(types.JSONRPCIntID)
 	}
 
+	//unmarshalResponseBytesArray is defined in ./rpc/jsonrpc/client/decode.go
 	return unmarshalResponseBytesArray(responseBytes, ids, results)
 }
 

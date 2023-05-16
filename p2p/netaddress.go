@@ -72,6 +72,7 @@ func NewNetAddressString(addr string) (*NetAddress, error) {
 	addrWithoutProtocol := removeProtocolIfDefined(addr)
 	spl := strings.Split(addrWithoutProtocol, "@")
 	if len(spl) != 2 {
+		//ErrNetAddressNoID is defined in ./p2p/errors.go
 		return nil, ErrNetAddressNoID{addr}
 	}
 

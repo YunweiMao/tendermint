@@ -374,6 +374,7 @@ func (wsc *wsConnection) readRoutine() {
 			ctx := &types.Context{JSONReq: &request, WSConn: wsc}
 			args := []reflect.Value{reflect.ValueOf(ctx)}
 			if len(request.Params) > 0 {
+				//jsonParamsToArgs is defined in ./rpc/jsonrpc/server/http_json_handler.go
 				fnArgs, err := jsonParamsToArgs(rpcFunc, request.Params)
 				if err != nil {
 					if err := wsc.WriteRPCResponse(writeCtx,

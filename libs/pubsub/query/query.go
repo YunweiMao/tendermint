@@ -103,6 +103,7 @@ func (q *Query) Conditions() ([]Condition, error) {
 
 	// tokens must be in the following order: tag ("tx.gas") -> operator ("=") -> operand ("7")
 	for token := range q.parser.Tokens() {
+		//pegRule is defined in ./libs/pubsub/query/query.peg.go
 		switch token.pegRule {
 		case rulePegText:
 			begin, end = int(token.begin), int(token.end)

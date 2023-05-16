@@ -94,8 +94,10 @@ type Client interface {
 func NewClient(addr, transport string, mustConnect bool) (client Client, err error) {
 	switch transport {
 	case "socket":
+		//NewSocketClient is defined in ./abci/client/socket_client.go
 		client = NewSocketClient(addr, mustConnect)
 	case "grpc":
+		//NewGRPCClient is defined in ./abci/client/grpc_client.go
 		client = NewGRPCClient(addr, mustConnect)
 	default:
 		err = fmt.Errorf("unknown abci transport %s", transport)

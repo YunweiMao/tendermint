@@ -134,6 +134,8 @@ func (prt *ProofRuntime) Verify(proof *tmcrypto.ProofOps, root []byte, keypath s
 // defined in the IAVL package.
 func DefaultProofRuntime() (prt *ProofRuntime) {
 	prt = NewProofRuntime()
+	//ProofOpValue is defined in ./crypto/merkle/proof_value.go
+	//ValueOpDecoder is defined in ./crypto/merkle/proof_value.go
 	prt.RegisterOpDecoder(ProofOpValue, ValueOpDecoder)
 	return
 }

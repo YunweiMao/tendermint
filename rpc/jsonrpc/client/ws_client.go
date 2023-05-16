@@ -492,6 +492,7 @@ func (c *WSClient) readRoutine() {
 			continue
 		}
 
+		//validateResponseID is defined in ./rpc/jsonrpc/client/decode.go
 		if err = validateResponseID(response.ID); err != nil {
 			c.Logger.Error("error in response ID", "id", response.ID, "err", err)
 			continue

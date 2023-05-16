@@ -16,10 +16,13 @@ import (
 func RegisterRPCFuncs(mux *http.ServeMux, funcMap map[string]*RPCFunc, logger log.Logger) {
 	// HTTP endpoints
 	for funcName, rpcFunc := range funcMap {
+		//makeHTTPHandler is defined in ./rpc/jsonrpc/server/http_uri_handler.go
 		mux.HandleFunc("/"+funcName, makeHTTPHandler(rpcFunc, logger))
 	}
 
 	// JSONRPC endpoints
+	//handleInvalidJSONRPCPaths is defined in ./rpc/jsonrpc/server/http_json_handler.go
+	//makeJSONRPCHandler is defined in ./rpc/jsonrpc/server/http_json_handler.go
 	mux.HandleFunc("/", handleInvalidJSONRPCPaths(makeJSONRPCHandler(funcMap, logger)))
 }
 
