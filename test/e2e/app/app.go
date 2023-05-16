@@ -12,6 +12,9 @@ import (
 	"github.com/YunweiMao/tendermint/libs/log"
 	"github.com/YunweiMao/tendermint/version"
 	"github.com/YunweiMao/tendermint/abci/example/code"
+
+	//ValidatorUpdates is in ./abci/types/util.go
+	//UpdateValidator is in ./abci/types/pubkey.go
 	abci "github.com/YunweiMao/tendermint/abci/types"
 
 )
