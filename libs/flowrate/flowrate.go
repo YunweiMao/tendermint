@@ -47,12 +47,15 @@ type Monitor struct {
 // The default values for sampleRate and windowSize (if <= 0) are 100ms and 1s,
 // respectively.
 func New(sampleRate, windowSize time.Duration) *Monitor {
+	//clockRound is defined in ./libs/flowrate/util.go
 	if sampleRate = clockRound(sampleRate); sampleRate <= 0 {
+		//clockRate is defined in ./libs/flowrate/util.go
 		sampleRate = 5 * clockRate
 	}
 	if windowSize <= 0 {
 		windowSize = 1 * time.Second
 	}
+	//clock is defined in ./libs/flowrate/util.go
 	now := clock()
 	return &Monitor{
 		active:  true,
@@ -119,6 +122,7 @@ type Status struct {
 	Duration time.Duration // Time period covered by the statistics
 	Idle     time.Duration // Time since the last transfer of at least 1 byte
 	TimeRem  time.Duration // Estimated time to completion
+	//Percent is defined in ./libs/flowrate/util.go
 	Progress Percent       // Overall transfer progress
 	Active   bool          // Flag indicating an active transfer
 }

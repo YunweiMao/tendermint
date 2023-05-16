@@ -24,6 +24,7 @@ var (
 // Query holds the query string and the query parser.
 type Query struct {
 	str    string
+	//QueryParser is defined in ./libs/pubsub/query/query.peg
 	parser *QueryParser
 }
 
