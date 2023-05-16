@@ -14,6 +14,12 @@ require (
 	github.com/spf13/viper v1.15.0
 	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e
 	google.golang.org/protobuf v1.28.1
+	github.com/prometheus/client_golang v1.12.2
+	github.com/rs/cors v1.8.2
+	github.com/tendermint/tm-db v0.6.6
+	github.com/libp2p/go-buffer-pool v0.1.0
+	github.com/gtank/merlin v0.1.1
+	github.com/sasha-s/go-deadlock v0.3.1
 )
 
 require (

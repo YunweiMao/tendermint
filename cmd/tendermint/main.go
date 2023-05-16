@@ -8,8 +8,9 @@ import (
 	cfg "github.com/YunweiMao/tendermint/config"
 	"github.com/YunweiMao/tendermint/libs/cli"
 
+	nm "github.com/YunweiMao/tendermint/node"
+
 	//"github.com/YunweiMao/tendermint/cmd/tendermint/commands/debug"
-	//nm "github.com/YunweiMao/tendermint/node"
 )
 
 func main() {

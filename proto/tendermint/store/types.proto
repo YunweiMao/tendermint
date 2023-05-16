@@ -1,0 +1,16 @@
+syntax = "proto3";
+package tendermint.store;
+
+option go_package = "github.com/YunweiMao/tendermint/proto/tendermint/store";
+
+//We need several .proto files
+//According to the following analysis we need:
+// . (we compile the .proto file at tendermint project proto/ subfolder)
+// The final command we use to compile .pb.go file is
+// protoc --proto_path=./ --gofast_out=./tendermint/store/ ./tendermint/store/types.proto
+// (SEEMS we do not need inlcude $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/protobuf/ path)
+
+message BlockStoreState {
+  int64 base   = 1;
+  int64 height = 2;
+}
