@@ -9,6 +9,7 @@ import (
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
+	//ABCIApplicationClient is in ./abci/types/types.pb.go
 	"github.com/YunweiMao/tendermint/abci/types"
 	tmnet "github.com/YunweiMao/tendermint/libs/net"
 	"github.com/YunweiMao/tendermint/libs/service"
