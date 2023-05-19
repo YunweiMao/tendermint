@@ -48,6 +48,7 @@ func New(store dbm.DB) *BlockerIndexer {
 // Has returns true if the given height has been indexed. An error is returned
 // upon database query failure.
 func (idx *BlockerIndexer) Has(height int64) (bool, error) {
+	//heightKey is in ./state/indexer/block/kv/util.go
 	key, err := heightKey(height)
 	if err != nil {
 		return false, fmt.Errorf("failed to create block height index key: %w", err)

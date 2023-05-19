@@ -232,6 +232,7 @@ func NewClientFromTrustedStore(
 		chainID:          chainID,
 		trustingPeriod:   trustingPeriod,
 		verificationMode: skipping,
+		//DefaultTrustLevel is in /light/verifier.go
 		trustLevel:       DefaultTrustLevel,
 		maxRetryAttempts: defaultMaxRetryAttempts,
 		maxClockDrift:    defaultMaxClockDrift,
@@ -251,6 +252,7 @@ func NewClientFromTrustedStore(
 
 	// Validate the number of witnesses.
 	if len(c.witnesses) == 0 {
+		//ErrNoWitnesses is in ./light/errors.go
 		return nil, ErrNoWitnesses
 	}
 

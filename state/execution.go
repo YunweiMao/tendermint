@@ -163,6 +163,7 @@ func (blockExec *BlockExecutor) CreateProposalBlock(
 // Validation does not mutate state, but does require historical information from the stateDB,
 // ie. to verify evidence from a validator at an old height.
 func (blockExec *BlockExecutor) ValidateBlock(state State, block *types.Block) error {
+	//validateBlock is in ./state/validation.go
 	err := validateBlock(state, block)
 	if err != nil {
 		return err
@@ -181,6 +182,7 @@ func (blockExec *BlockExecutor) ApplyBlock(
 ) (State, int64, error) {
 
 	if err := validateBlock(state, block); err != nil {
+		//ErrInvalidBlock is in ./state/errors.go
 		return state, 0, ErrInvalidBlock(err)
 	}
 
@@ -292,6 +294,7 @@ func (blockExec *BlockExecutor) Commit(
 		block.Height,
 		block.Txs,
 		deliverTxResponses,
+		//TxPreCheck and TxPostCheck is in ./state/tx_filter.go
 		TxPreCheck(state),
 		TxPostCheck(state),
 	)

@@ -21,6 +21,7 @@ import (
 // SignerClient implements PrivValidator.
 // Handles remote validator connections that provide signing services
 type SignerClient struct {
+	//SignerListenerEndpoint is defined in ./privval/signer_listener_endpoint.go
 	endpoint *SignerListenerEndpoint
 	chainID  string
 }
@@ -76,6 +77,7 @@ func (sc *SignerClient) Ping() error {
 // GetPubKey retrieves a public key from a remote signer
 // returns an error if client is not able to provide the key
 func (sc *SignerClient) GetPubKey() (crypto.PubKey, error) {
+	//mustWrapMsg is in ./privval/msgs.go
 	response, err := sc.endpoint.SendRequest(mustWrapMsg(&privvalproto.PubKeyRequest{ChainId: sc.chainID}))
 	if err != nil {
 		return nil, fmt.Errorf("send: %w", err)
@@ -83,6 +85,7 @@ func (sc *SignerClient) GetPubKey() (crypto.PubKey, error) {
 
 	resp := response.GetPubKeyResponse()
 	if resp == nil {
+		//ErrUnexpectedResponse is in  ./privval/errors.go
 		return nil, ErrUnexpectedResponse
 	}
 	if resp.Error != nil {
