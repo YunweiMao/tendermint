@@ -40,6 +40,11 @@ type Wrapper interface {
 }
 
 var (
+	//Initially there is an error: 
+	//p2p/types.go:43:14: cannot use &tmp2p.PexRequest{} (value of type *"github.com/YunweiMao/tendermint/proto/tendermint/p2p".PexRequest) as type Wrapper in variable declaration:
+	//   *"github.com/YunweiMao/tendermint/proto/tendermint/p2p".PexRequest does not implement Wrapper (missing Wrap method)
+	//After check the original code, we realized that the wrap fun is defined in /proto/tendermint/p2p/pex.go which is not 
+	// be included in our code at that point.
 	_ Wrapper = &tmp2p.PexRequest{}
 	_ Wrapper = &tmp2p.PexAddrs{}
 )
