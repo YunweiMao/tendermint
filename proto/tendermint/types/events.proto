@@ -1,0 +1,21 @@
+syntax = "proto3";
+package tendermint.types;
+
+option go_package = "github.com/YunweiMao/tendermint/proto/tendermint/types";
+
+//We need several .proto files
+//According to the following analysis we need:
+//  gogoproto/gogo.proto
+//  google/protobuf/timestamp.proto
+//  tendermint/version/types.proto
+//The paths are
+// . (we compile the .proto file at tendermint project proto/ subfolder)
+// The final command we use to compile .pb.go file is
+// protoc --proto_path=./ --go_out=./tendermint/types/ ./tendermint/types/events.proto
+// (SEEMS we do not need inlcude $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/protobuf/ path)
+
+message EventDataRoundState {
+  int64  height = 1;
+  int32  round  = 2;
+  string step   = 3;
+}

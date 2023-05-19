@@ -256,6 +256,7 @@ func (txi *TxIndex) Search(ctx context.Context, q *query.Query) ([]*abci.TxResul
 
 	// for all other conditions
 	for i, c := range conditions {
+		//intInSlice is in ./state/indexer/block/kv//util.go
 		if intInSlice(i, skipIndexes) {
 			continue
 		}
