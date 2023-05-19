@@ -56,6 +56,7 @@ type Pool struct {
 
 // NewPool creates an evidence pool. If using an existing evidence store,
 // it will add all pending evidence to the concurrent list.
+//BlockStore is in ./evidence/services.go
 func NewPool(evidenceDB dbm.DB, stateDB sm.Store, blockStore BlockStore) (*Pool, error) {
 
 	state, err := stateDB.Load()
@@ -154,6 +155,7 @@ func (evpool *Pool) AddEvidence(ev types.Evidence) error {
 	}
 
 	// 1) Verify against state.
+	//verify is in ./evidence/verify.go
 	err := evpool.verify(ev)
 	if err != nil {
 		return types.NewErrInvalidEvidence(ev, err)

@@ -304,6 +304,7 @@ func (cs *State) SetPrivValidator(priv types.PrivValidator) {
 
 // SetTimeoutTicker sets the local timer. It may be useful to overwrite for
 // testing.
+//TimeoutTicker is in ./consensus/ticker.go
 func (cs *State) SetTimeoutTicker(timeoutTicker TimeoutTicker) {
 	cs.mtx.Lock()
 	cs.timeoutTicker = timeoutTicker

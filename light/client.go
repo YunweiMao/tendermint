@@ -706,6 +706,7 @@ func (c *Client) verifySequential(
 	//
 	// CORRECTNESS ASSUMPTION: there's at least 1 correct full node
 	// (primary or one of the witnesses).
+	//detectDivergence is in ./light/detector.go
 	return c.detectDivergence(ctx, trace, now)
 }
 
@@ -830,6 +831,7 @@ func (c *Client) verifySkippingAgainstPrimary(
 		//
 		// CORRECTNESS ASSUMPTION: there's at least 1 correct full node
 		// (primary or one of the witnesses).
+		//detectDivergence is in detector.go
 		if cmpErr := c.detectDivergence(ctx, trace, now); cmpErr != nil {
 			return cmpErr
 		}
@@ -1154,6 +1156,7 @@ func (c *Client) compareFirstHeaderWithWitnesses(ctx context.Context, h *types.S
 
 	errc := make(chan error, len(c.witnesses))
 	for i, witness := range c.witnesses {
+		//compareNewHeaderWithWitness ./light/detector.go
 		go c.compareNewHeaderWithWitness(compareCtx, errc, h, witness, i)
 	}
 

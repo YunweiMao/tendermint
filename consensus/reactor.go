@@ -710,6 +710,7 @@ OUTER_LOOP:
 	}
 }
 
+//PeerRoundState is in ./consensus/types/peer_round_state.go
 func (conR *Reactor) gossipDataForCatchup(logger log.Logger, rs *cstypes.RoundState,
 	prs *cstypes.PeerRoundState, ps *PeerState, peer p2p.Peer) {
 
