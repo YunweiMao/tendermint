@@ -95,6 +95,7 @@ type addrBook struct {
 	rand       *tmrand.Rand
 	ourAddrs   map[string]struct{}
 	privateIDs map[p2p.ID]struct{}
+	//knownAddress is defined in ./p2p/pex/known_address.go
 	addrLookup map[p2p.ID]*knownAddress // new & old
 	badPeers   map[p2p.ID]*knownAddress // blacklisted peers
 	bucketsOld []map[string]*knownAddress
