@@ -529,6 +529,7 @@ func (a *addrBook) getBucket(bucketType byte, bucketIdx int) map[string]*knownAd
 func (a *addrBook) addToNewBucket(ka *knownAddress, bucketIdx int) error {
 	// Consistency check to ensure we don't add an already known address
 	if ka.isOld() {
+		//errAddrBookOldAddressNewBucket is defined in ./p2p/pex/errors.go
 		return errAddrBookOldAddressNewBucket{ka.Addr, bucketIdx}
 	}
 
