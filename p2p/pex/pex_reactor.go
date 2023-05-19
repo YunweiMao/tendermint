@@ -35,6 +35,7 @@ const (
 
 	// NOTE: amplificaiton factor!
 	// small request results in up to maxMsgSize response
+	//maxGetSelection is defined in ./p2p/pex/params.go
 	maxMsgSize = maxAddressSize * maxGetSelection
 
 	// ensure we have enough peers
