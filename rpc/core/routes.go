@@ -17,6 +17,7 @@ var Routes = map[string]*rpc.RPCFunc{
 	"unsubscribe_all": rpc.NewWSRPCFunc(UnsubscribeAll, ""),
 
 	// info API
+	//Health is in ./rpc/core/health.go
 	"health":               rpc.NewRPCFunc(Health, ""),
 	"status":               rpc.NewRPCFunc(Status, ""),
 	"net_info":             rpc.NewRPCFunc(NetInfo, ""),
