@@ -556,6 +556,7 @@ func (sc *scheduler) handleNoBlockResponse(event bcNoBlockResponse) (Event, erro
 			event.peerID, peer.base, peer.height, event.height)}, nil
 }
 
+//pcBlockProcessed is defined in ./blockchain/v2/processor.go
 func (sc *scheduler) handleBlockProcessed(event pcBlockProcessed) (Event, error) {
 	if event.height != sc.height {
 		panic(fmt.Sprintf("processed height %d, but expected height %d", event.height, sc.height))
