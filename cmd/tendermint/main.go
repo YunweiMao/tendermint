@@ -47,10 +47,10 @@ func main() {
 	 can copy this file and use something other than the
 	 DefaultNewNode function
 	*/
-	//nodeFunc := nm.DefaultNewNode
+	nodeFunc := nm.DefaultNewNode
 
 	// Create & start node
-	//rootCmd.AddCommand(cmd.NewRunNodeCmd(nodeFunc))
+	rootCmd.AddCommand(cmd.NewRunNodeCmd(nodeFunc))
 
 	cmd := cli.PrepareBaseCmd(rootCmd, "TM", os.ExpandEnv(filepath.Join("$HOME", cfg.DefaultTendermintDir)))
 	if err := cmd.Execute(); err != nil {
