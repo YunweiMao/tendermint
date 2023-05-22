@@ -50,6 +50,7 @@ func main() {
 	nodeFunc := nm.DefaultNewNode
 
 	// Create & start node
+	//NewRunNodeCmd is in ./cmd/tendermint/commands/run_node.go
 	rootCmd.AddCommand(cmd.NewRunNodeCmd(nodeFunc))
 
 	cmd := cli.PrepareBaseCmd(rootCmd, "TM", os.ExpandEnv(filepath.Join("$HOME", cfg.DefaultTendermintDir)))
