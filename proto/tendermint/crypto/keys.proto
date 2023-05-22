@@ -10,7 +10,7 @@ option go_package = "github.com/YunweiMao/tendermint/proto/tendermint/crypto";
 // $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/
 // . (we compile the .proto file at tendermint project proto/ subfolder)
 // The final command we use to compile .pb.go file is
-// protoc --proto_path=./:$GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/ --go_out=./tendermint/crypto/ ./tendermint/crypto/keys.proto
+// protoc --proto_path=./:$GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/ --gofast_out=./tendermint/crypto/ ./tendermint/crypto/keys.proto
 // (SEEMS we do not need inlcude $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/protobuf/ path)
 import "gogoproto/gogo.proto";
 

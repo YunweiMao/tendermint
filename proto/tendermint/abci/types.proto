@@ -16,7 +16,7 @@ option go_package = "github.com/YunweiMao/tendermint/abci/types";
 // $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/protobuf/
 // . (we compile the .proto file at tendermint project proto/ subfolder)
 // The final command we use to compile .pb.go file is
-// protoc --proto_path=./:$GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/ --go_out=./tendermint/abci/ ./tendermint/abci/types.proto
+// protoc --proto_path=./:$GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/ --gofast_out=./tendermint/abci/ ./tendermint/abci/types.proto
 // (SEEMS we do not need inlcude $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/protobuf/ path)
 
 // For more information on gogo.proto, see:
