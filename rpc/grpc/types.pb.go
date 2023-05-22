@@ -4,9 +4,13 @@
 package coregrpc
 
 import (
+	context "context"
 	fmt "fmt"
+	proto "github.com/gogo/protobuf/proto"
 	types "github.com/YunweiMao/tendermint/abci/types"
-	proto "github.com/golang/protobuf/proto"
+	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	io "io"
 	math "math"
 	math_bits "math/bits"
@@ -21,12 +25,9 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
+const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type RequestPing struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *RequestPing) Reset()         { *m = RequestPing{} }
@@ -63,10 +64,7 @@ func (m *RequestPing) XXX_DiscardUnknown() {
 var xxx_messageInfo_RequestPing proto.InternalMessageInfo
 
 type RequestBroadcastTx struct {
-	Tx                   []byte   `protobuf:"bytes,1,opt,name=tx,proto3" json:"tx,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Tx []byte `protobuf:"bytes,1,opt,name=tx,proto3" json:"tx,omitempty"`
 }
 
 func (m *RequestBroadcastTx) Reset()         { *m = RequestBroadcastTx{} }
@@ -110,9 +108,6 @@ func (m *RequestBroadcastTx) GetTx() []byte {
 }
 
 type ResponsePing struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *ResponsePing) Reset()         { *m = ResponsePing{} }
@@ -149,11 +144,8 @@ func (m *ResponsePing) XXX_DiscardUnknown() {
 var xxx_messageInfo_ResponsePing proto.InternalMessageInfo
 
 type ResponseBroadcastTx struct {
-	CheckTx              *types.ResponseCheckTx   `protobuf:"bytes,1,opt,name=check_tx,json=checkTx,proto3" json:"check_tx,omitempty"`
-	DeliverTx            *types.ResponseDeliverTx `protobuf:"bytes,2,opt,name=deliver_tx,json=deliverTx,proto3" json:"deliver_tx,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                 `json:"-"`
-	XXX_unrecognized     []byte                   `json:"-"`
-	XXX_sizecache        int32                    `json:"-"`
+	CheckTx   *types.ResponseCheckTx   `protobuf:"bytes,1,opt,name=check_tx,json=checkTx,proto3" json:"check_tx,omitempty"`
+	DeliverTx *types.ResponseDeliverTx `protobuf:"bytes,2,opt,name=deliver_tx,json=deliverTx,proto3" json:"deliver_tx,omitempty"`
 }
 
 func (m *ResponseBroadcastTx) Reset()         { *m = ResponseBroadcastTx{} }
@@ -213,7 +205,7 @@ func init() {
 func init() { proto.RegisterFile("tendermint/rpc/grpc/types.proto", fileDescriptor_0ffff5682c662b95) }
 
 var fileDescriptor_0ffff5682c662b95 = []byte{
-	// 307 bytes of a gzipped FileDescriptorProto
+	// 316 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x2f, 0x49, 0xcd, 0x4b,
 	0x49, 0x2d, 0xca, 0xcd, 0xcc, 0x2b, 0xd1, 0x2f, 0x2a, 0x48, 0xd6, 0x4f, 0x07, 0x11, 0x25, 0x95,
 	0x05, 0xa9, 0xc5, 0x7a, 0x05, 0x45, 0xf9, 0x25, 0xf9, 0x42, 0xc2, 0x08, 0x05, 0x7a, 0x45, 0x05,
@@ -229,11 +221,127 @@ var fileDescriptor_0ffff5682c662b95 = []byte{
 	0x8c, 0x69, 0xb4, 0x97, 0x91, 0x8b, 0x07, 0xee, 0x1e, 0xc7, 0x00, 0x4f, 0x21, 0x6f, 0x2e, 0x16,
 	0x90, 0x83, 0x85, 0x50, 0x9c, 0x01, 0x0b, 0x28, 0x3d, 0xa4, 0x80, 0x90, 0x52, 0xc4, 0xa1, 0x02,
 	0xe1, 0x6b, 0xa1, 0x04, 0x2e, 0x6e, 0x64, 0xcf, 0xaa, 0xe3, 0x33, 0x13, 0x49, 0xa1, 0x94, 0x06,
-	0x5e, 0xa3, 0x91, 0x54, 0x3a, 0xb9, 0x9c, 0x78, 0x24, 0xc7, 0x78, 0xe1, 0x91, 0x1c, 0xe3, 0x83,
-	0x47, 0x72, 0x8c, 0x33, 0x1e, 0xcb, 0x31, 0x44, 0x19, 0xa5, 0x67, 0x96, 0x64, 0x94, 0x26, 0xe9,
-	0x25, 0xe7, 0xe7, 0xea, 0x23, 0x45, 0x2b, 0x96, 0x74, 0x61, 0x9d, 0x9c, 0x5f, 0x94, 0x0a, 0x62,
-	0x24, 0xb1, 0x81, 0x63, 0xda, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0x43, 0x87, 0xd8, 0x5c, 0x3e,
-	0x02, 0x00, 0x00,
+	0x5e, 0xa3, 0x91, 0x54, 0x3a, 0xf9, 0x9c, 0x78, 0x24, 0xc7, 0x78, 0xe1, 0x91, 0x1c, 0xe3, 0x83,
+	0x47, 0x72, 0x8c, 0x13, 0x1e, 0xcb, 0x31, 0x5c, 0x78, 0x2c, 0xc7, 0x70, 0xe3, 0xb1, 0x1c, 0x43,
+	0x94, 0x51, 0x7a, 0x66, 0x49, 0x46, 0x69, 0x92, 0x5e, 0x72, 0x7e, 0xae, 0x3e, 0x52, 0xf4, 0x62,
+	0x49, 0x1f, 0xd6, 0xc9, 0xf9, 0x45, 0xa9, 0x20, 0x46, 0x12, 0x1b, 0x38, 0xc6, 0x8d, 0x01, 0x01,
+	0x00, 0x00, 0xff, 0xff, 0xf6, 0x4b, 0x02, 0xd8, 0x46, 0x02, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// BroadcastAPIClient is the client API for BroadcastAPI service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type BroadcastAPIClient interface {
+	Ping(ctx context.Context, in *RequestPing, opts ...grpc.CallOption) (*ResponsePing, error)
+	BroadcastTx(ctx context.Context, in *RequestBroadcastTx, opts ...grpc.CallOption) (*ResponseBroadcastTx, error)
+}
+
+type broadcastAPIClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewBroadcastAPIClient(cc *grpc.ClientConn) BroadcastAPIClient {
+	return &broadcastAPIClient{cc}
+}
+
+func (c *broadcastAPIClient) Ping(ctx context.Context, in *RequestPing, opts ...grpc.CallOption) (*ResponsePing, error) {
+	out := new(ResponsePing)
+	err := c.cc.Invoke(ctx, "/tendermint.rpc.grpc.BroadcastAPI/Ping", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *broadcastAPIClient) BroadcastTx(ctx context.Context, in *RequestBroadcastTx, opts ...grpc.CallOption) (*ResponseBroadcastTx, error) {
+	out := new(ResponseBroadcastTx)
+	err := c.cc.Invoke(ctx, "/tendermint.rpc.grpc.BroadcastAPI/BroadcastTx", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// BroadcastAPIServer is the server API for BroadcastAPI service.
+type BroadcastAPIServer interface {
+	Ping(context.Context, *RequestPing) (*ResponsePing, error)
+	BroadcastTx(context.Context, *RequestBroadcastTx) (*ResponseBroadcastTx, error)
+}
+
+// UnimplementedBroadcastAPIServer can be embedded to have forward compatible implementations.
+type UnimplementedBroadcastAPIServer struct {
+}
+
+func (*UnimplementedBroadcastAPIServer) Ping(ctx context.Context, req *RequestPing) (*ResponsePing, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
+}
+func (*UnimplementedBroadcastAPIServer) BroadcastTx(ctx context.Context, req *RequestBroadcastTx) (*ResponseBroadcastTx, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BroadcastTx not implemented")
+}
+
+func RegisterBroadcastAPIServer(s *grpc.Server, srv BroadcastAPIServer) {
+	s.RegisterService(&_BroadcastAPI_serviceDesc, srv)
+}
+
+func _BroadcastAPI_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestPing)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BroadcastAPIServer).Ping(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tendermint.rpc.grpc.BroadcastAPI/Ping",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BroadcastAPIServer).Ping(ctx, req.(*RequestPing))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BroadcastAPI_BroadcastTx_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestBroadcastTx)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BroadcastAPIServer).BroadcastTx(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tendermint.rpc.grpc.BroadcastAPI/BroadcastTx",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BroadcastAPIServer).BroadcastTx(ctx, req.(*RequestBroadcastTx))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _BroadcastAPI_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "tendermint.rpc.grpc.BroadcastAPI",
+	HandlerType: (*BroadcastAPIServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Ping",
+			Handler:    _BroadcastAPI_Ping_Handler,
+		},
+		{
+			MethodName: "BroadcastTx",
+			Handler:    _BroadcastAPI_BroadcastTx_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "tendermint/rpc/grpc/types.proto",
 }
 
 func (m *RequestPing) Marshal() (dAtA []byte, err error) {
@@ -256,10 +364,6 @@ func (m *RequestPing) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
 	return len(dAtA) - i, nil
 }
 
@@ -283,10 +387,6 @@ func (m *RequestBroadcastTx) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
 	if len(m.Tx) > 0 {
 		i -= len(m.Tx)
 		copy(dAtA[i:], m.Tx)
@@ -317,10 +417,6 @@ func (m *ResponsePing) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
 	return len(dAtA) - i, nil
 }
 
@@ -344,10 +440,6 @@ func (m *ResponseBroadcastTx) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
 	if m.DeliverTx != nil {
 		{
 			size, err := m.DeliverTx.MarshalToSizedBuffer(dAtA[:i])
@@ -392,9 +484,6 @@ func (m *RequestPing) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
 	return n
 }
 
@@ -408,9 +497,6 @@ func (m *RequestBroadcastTx) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovTypes(uint64(l))
 	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
 	return n
 }
 
@@ -420,9 +506,6 @@ func (m *ResponsePing) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
 	return n
 }
 
@@ -439,9 +522,6 @@ func (m *ResponseBroadcastTx) Size() (n int) {
 	if m.DeliverTx != nil {
 		l = m.DeliverTx.Size()
 		n += 1 + l + sovTypes(uint64(l))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -493,7 +573,6 @@ func (m *RequestPing) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -578,7 +657,6 @@ func (m *RequestBroadcastTx) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -629,7 +707,6 @@ func (m *ResponsePing) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -752,7 +829,6 @@ func (m *ResponseBroadcastTx) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
