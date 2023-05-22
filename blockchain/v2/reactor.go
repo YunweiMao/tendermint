@@ -58,6 +58,7 @@ type BlockchainReactor struct {
 	events        chan Event // non-nil during a fast sync
 
 	reporter behaviour.Reporter
+	//iIO is defined in io.go
 	io       iIO
 	store    blockStore
 }
@@ -197,6 +198,7 @@ func (r *BlockchainReactor) SwitchToFastSync(state state.State) error {
 // reactor generated ticker events:
 // ticker for cleaning peers
 type rTryPrunePeer struct {
+	//priorityHigh is defined in scheduler.go
 	priorityHigh
 	time time.Time
 }

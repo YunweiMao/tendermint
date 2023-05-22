@@ -59,6 +59,7 @@ type BlockchainReactor struct {
 	fastSync    bool
 	stateSynced bool
 
+	//BcReactorFSM is defined in local reactor_fsm.go
 	fsm          *BcReactorFSM
 	blocksSynced uint64
 
