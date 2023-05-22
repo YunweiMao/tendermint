@@ -10,6 +10,7 @@ import (
 	"github.com/YunweiMao/tendermint/libs/log"
 )
 
+//Event is defined in ./blockchain/v2/types.go
 type handleFunc = func(event Event) (Event, error)
 
 const historySize = 25
@@ -30,6 +31,7 @@ type Routine struct {
 	rdy     chan struct{}
 	running *uint32
 	logger  log.Logger
+	//Metrics is defined in metrics.go
 	metrics *Metrics
 }
 
