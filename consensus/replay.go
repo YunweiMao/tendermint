@@ -442,6 +442,7 @@ func (h *Handshaker) ReplayBlocks(
 			if err != nil {
 				return nil, err
 			}
+			//defined in ./consensus/replay_stubs.go
 			mockApp := newMockProxyApp(appHash, abciResponses)
 			h.logger.Info("Replay last block using mock app")
 			state, err = h.replayBlock(state, storeBlockHeight, mockApp)
@@ -516,6 +517,7 @@ func (h *Handshaker) replayBlock(state sm.State, height int64, proxyApp proxy.Ap
 
 	// Use stubs for both mempool and evidence pool since no transactions nor
 	// evidence are needed here - block already exists.
+	//emptyMempool is defined in ./consensus/replay_stubs.go
 	blockExec := sm.NewBlockExecutor(h.stateStore, h.logger, proxyApp, emptyMempool{}, sm.EmptyEvidencePool{})
 	blockExec.SetEventBus(h.eventBus)
 
