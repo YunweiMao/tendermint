@@ -11,6 +11,7 @@ import (
 // Routes is a map of available routes.
 var Routes = map[string]*rpc.RPCFunc{
 	// subscribe/unsubscribe are reserved for websocket events.
+	//Subscribe is defined in ./rpc/core/events.go
 	"subscribe":       rpc.NewWSRPCFunc(Subscribe, "query"),
 	"unsubscribe":     rpc.NewWSRPCFunc(Unsubscribe, "query"),
 	"unsubscribe_all": rpc.NewWSRPCFunc(UnsubscribeAll, ""),
@@ -21,6 +22,7 @@ var Routes = map[string]*rpc.RPCFunc{
 	"net_info":             rpc.NewRPCFunc(NetInfo, ""),
 	"blockchain":           rpc.NewRPCFunc(BlockchainInfo, "minHeight,maxHeight", rpc.Cacheable()),
 	"genesis":              rpc.NewRPCFunc(Genesis, "", rpc.Cacheable()),
+	//GenesisChunked is defined in net.go
 	"genesis_chunked":      rpc.NewRPCFunc(GenesisChunked, "chunk", rpc.Cacheable()),
 	"block":                rpc.NewRPCFunc(Block, "height", rpc.Cacheable("height")),
 	"block_by_hash":        rpc.NewRPCFunc(BlockByHash, "hash", rpc.Cacheable()),
