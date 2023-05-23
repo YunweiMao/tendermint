@@ -63,7 +63,7 @@ func (c *broadcastAPIClient) BroadcastTx(ctx context.Context, in *RequestBroadca
 type BroadcastAPIServer interface {
 	Ping(context.Context, *RequestPing) (*ResponsePing, error)
 	BroadcastTx(context.Context, *RequestBroadcastTx) (*ResponseBroadcastTx, error)
-	mustEmbedUnimplementedBroadcastAPIServer()
+	//mustEmbedUnimplementedBroadcastAPIServer()
 }
 
 // UnimplementedBroadcastAPIServer must be embedded to have forward compatible implementations.
@@ -76,14 +76,14 @@ func (UnimplementedBroadcastAPIServer) Ping(context.Context, *RequestPing) (*Res
 func (UnimplementedBroadcastAPIServer) BroadcastTx(context.Context, *RequestBroadcastTx) (*ResponseBroadcastTx, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BroadcastTx not implemented")
 }
-func (UnimplementedBroadcastAPIServer) mustEmbedUnimplementedBroadcastAPIServer() {}
+//func (UnimplementedBroadcastAPIServer) mustEmbedUnimplementedBroadcastAPIServer() {}
 
 // UnsafeBroadcastAPIServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to BroadcastAPIServer will
 // result in compilation errors.
-type UnsafeBroadcastAPIServer interface {
-	mustEmbedUnimplementedBroadcastAPIServer()
-}
+//type UnsafeBroadcastAPIServer interface {
+//	mustEmbedUnimplementedBroadcastAPIServer()
+//}
 
 func RegisterBroadcastAPIServer(s grpc.ServiceRegistrar, srv BroadcastAPIServer) {
 	s.RegisterService(&BroadcastAPI_ServiceDesc, srv)
