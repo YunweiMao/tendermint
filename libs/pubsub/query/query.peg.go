@@ -66,7 +66,7 @@ var rul3s = [...]string{
 
 type token32 struct {
 	pegRule
-	begin, end uint32
+	begin, end, next uint32
 }
 
 func (t *token32) String() string {
