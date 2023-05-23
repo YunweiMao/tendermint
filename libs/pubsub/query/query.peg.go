@@ -180,6 +180,10 @@ func (t *tokens32) Tokens() <-chan token32 {
 	return s
 }
 
+func (t *token32) getToken32() token32 {
+	return token32{pegRule: t.pegRule, begin: uint32(t.begin), end: uint32(t.end), next: uint32(t.next)}
+}
+
 type QueryParser struct {
 	Buffer string
 	buffer []rune
