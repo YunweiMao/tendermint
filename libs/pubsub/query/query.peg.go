@@ -169,8 +169,15 @@ func (t *tokens32) Add(rule pegRule, begin, end, index uint32) {
 	tree[i] = token32{pegRule: rule, begin: begin, end: end}
 }
 
-func (t *tokens32) Tokens() []token32 {
-	return t.tree
+func (t *tokens32) Tokens() <-chan token32 {
+	s := make(chan token32, 16)
+	go func() {
+		for _, v := range t.tree {
+			s <- v.getToken32()
+		}
+		close(s)
+	}()
+	return s
 }
 
 type QueryParser struct {
