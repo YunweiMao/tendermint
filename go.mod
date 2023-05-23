@@ -58,6 +58,9 @@ require (
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/pelletier/go-toml/v2 v2.0.6 // indirect
 	github.com/petermattis/goid v0.0.0-20180202154549-b0b1615b78e5 // indirect
+	github.com/pointlander/compress v1.1.1-0.20190518213731-ff44bd196cc3 // indirect
+	github.com/pointlander/jetset v1.0.1-0.20190518214125-eee7eff80bd4 // indirect
+	github.com/pointlander/peg v1.0.1 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.32.1 // indirect
 	github.com/prometheus/procfs v0.7.3 // indirect
