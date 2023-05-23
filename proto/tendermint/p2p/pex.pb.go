@@ -6,7 +6,7 @@ package p2p
 import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
-	proto "github.com/gogo/protobuf/proto"
+	proto "github.com/golang/protobuf/proto"
 	io "io"
 	math "math"
 	math_bits "math/bits"
@@ -21,9 +21,12 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type PexRequest struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *PexRequest) Reset()         { *m = PexRequest{} }
@@ -60,7 +63,10 @@ func (m *PexRequest) XXX_DiscardUnknown() {
 var xxx_messageInfo_PexRequest proto.InternalMessageInfo
 
 type PexAddrs struct {
-	Addrs []NetAddress `protobuf:"bytes,1,rep,name=addrs,proto3" json:"addrs"`
+	Addrs                []NetAddress `protobuf:"bytes,1,rep,name=addrs,proto3" json:"addrs"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
 }
 
 func (m *PexAddrs) Reset()         { *m = PexAddrs{} }
@@ -107,7 +113,10 @@ type Message struct {
 	// Types that are valid to be assigned to Sum:
 	//	*Message_PexRequest
 	//	*Message_PexAddrs
-	Sum isMessage_Sum `protobuf_oneof:"sum"`
+	Sum                  isMessage_Sum `protobuf_oneof:"sum"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
 func (m *Message) Reset()         { *m = Message{} }
@@ -197,7 +206,7 @@ func init() {
 func init() { proto.RegisterFile("tendermint/p2p/pex.proto", fileDescriptor_81c2f011fd13be57) }
 
 var fileDescriptor_81c2f011fd13be57 = []byte{
-	// 268 bytes of a gzipped FileDescriptorProto
+	// 267 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x28, 0x49, 0xcd, 0x4b,
 	0x49, 0x2d, 0xca, 0xcd, 0xcc, 0x2b, 0xd1, 0x2f, 0x30, 0x2a, 0xd0, 0x2f, 0x48, 0xad, 0xd0, 0x2b,
 	0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x43, 0xc8, 0xe8, 0x15, 0x18, 0x15, 0x48, 0x49, 0xa1, 0xa9,
@@ -210,11 +219,11 @@ var fileDescriptor_81c2f011fd13be57 = []byte{
 	0x5c, 0xdc, 0x05, 0xa9, 0x15, 0xf1, 0x45, 0x10, 0xe3, 0x25, 0x18, 0x15, 0x18, 0xb1, 0x99, 0x84,
 	0x70, 0x80, 0x07, 0x43, 0x10, 0x57, 0x01, 0x9c, 0x27, 0x64, 0xce, 0xc5, 0x09, 0xd2, 0x0e, 0x71,
 	0x06, 0x13, 0x58, 0xb3, 0x04, 0x16, 0xcd, 0x60, 0xf7, 0x7a, 0x30, 0x04, 0x71, 0x14, 0x40, 0xd9,
-	0x4e, 0xac, 0x5c, 0xcc, 0xc5, 0xa5, 0xb9, 0x4e, 0xfe, 0x27, 0x1e, 0xc9, 0x31, 0x5e, 0x78, 0x24,
-	0xc7, 0xf8, 0xe0, 0x91, 0x1c, 0xe3, 0x84, 0xc7, 0x72, 0x0c, 0x17, 0x1e, 0xcb, 0x31, 0xdc, 0x78,
-	0x2c, 0xc7, 0x10, 0x65, 0x9a, 0x9e, 0x59, 0x92, 0x51, 0x9a, 0xa4, 0x97, 0x9c, 0x9f, 0xab, 0x8f,
-	0x14, 0x66, 0xc8, 0xc1, 0x07, 0x0e, 0x29, 0xd4, 0xf0, 0x4c, 0x62, 0x03, 0x8b, 0x1a, 0x03, 0x02,
-	0x00, 0x00, 0xff, 0xff, 0x3c, 0x0b, 0xcb, 0x40, 0x92, 0x01, 0x00, 0x00,
+	0x4e, 0xac, 0x5c, 0xcc, 0xc5, 0xa5, 0xb9, 0x4e, 0x6e, 0x27, 0x1e, 0xc9, 0x31, 0x5e, 0x78, 0x24,
+	0xc7, 0xf8, 0xe0, 0x91, 0x1c, 0xe3, 0x8c, 0xc7, 0x72, 0x0c, 0x51, 0x26, 0xe9, 0x99, 0x25, 0x19,
+	0xa5, 0x49, 0x7a, 0xc9, 0xf9, 0xb9, 0xfa, 0x91, 0xa5, 0x79, 0xe5, 0xa9, 0x99, 0xbe, 0x89, 0xf9,
+	0xfa, 0xc8, 0xa1, 0x06, 0x0e, 0x20, 0xd4, 0x60, 0x4c, 0x62, 0x03, 0x8b, 0x1a, 0x03, 0x02, 0x00,
+	0x00, 0xff, 0xff, 0xf3, 0xfb, 0xea, 0x41, 0x89, 0x01, 0x00, 0x00,
 }
 
 func (m *PexRequest) Marshal() (dAtA []byte, err error) {
@@ -237,6 +246,10 @@ func (m *PexRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	return len(dAtA) - i, nil
 }
 
@@ -260,6 +273,10 @@ func (m *PexAddrs) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if len(m.Addrs) > 0 {
 		for iNdEx := len(m.Addrs) - 1; iNdEx >= 0; iNdEx-- {
 			{
@@ -297,6 +314,10 @@ func (m *Message) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.Sum != nil {
 		{
 			size := m.Sum.Size()
@@ -368,6 +389,9 @@ func (m *PexRequest) Size() (n int) {
 	}
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -383,6 +407,9 @@ func (m *PexAddrs) Size() (n int) {
 			n += 1 + l + sovPex(uint64(l))
 		}
 	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -394,6 +421,9 @@ func (m *Message) Size() (n int) {
 	_ = l
 	if m.Sum != nil {
 		n += m.Sum.Size()
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -470,6 +500,7 @@ func (m *PexRequest) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -554,6 +585,7 @@ func (m *PexAddrs) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -674,6 +706,7 @@ func (m *Message) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
