@@ -9,7 +9,7 @@ option  go_package = "github.com/tendermint/tendermint/rpc/grpc;coregrpc";
 // $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/ (block.proto will depend on this package)
 // . (we compile the .proto file at tendermint project proto/ subfolder)
 // The final command we use to compile .pb.go file is
-// protoc --proto_path=./:$GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/ --gofast_out=./tendermint/rpc/grpc ./tendermint/rpc/grpc/types.proto
+// protoc --proto_path=./:$GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/ --gofast_out=./tendermint/rpc/grpc --go-grpc_out=./tendermint/rpc/grpc ./tendermint/rpc/grpc/types.proto
 // (SEEMS we do not need inlcude $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/protobuf/ path)
 import "tendermint/abci/types.proto";
 

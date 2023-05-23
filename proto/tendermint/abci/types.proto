@@ -15,6 +15,7 @@ option go_package = "github.com/YunweiMao/tendermint/abci/types";
 // $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/
 // $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/protobuf/
 // . (we compile the .proto file at tendermint project proto/ subfolder)
+// THERE is a service definition in this proto file, so we need to include --go-grpc-out as well.
 // The final command we use to compile .pb.go file is
 //protoc --proto_path=./:$GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/ --gofast_out=./tendermint/abci/ --go-grpc_out=./tendermint/abci/ ./tendermint/abci/types.proto
 // (SEEMS we do not need inlcude $GOPATH/pkg/mod/github.com/gogo/protobuf@v1.3.2/protobuf/ path)
